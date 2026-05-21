@@ -1,0 +1,184 @@
+{
+  "object": "list",
+  "data": [
+    {
+      "id": "1909319",
+      "object": "public_event",
+      "kind": "scheduled",
+      "state": "published",
+      "title": "LYSETS BØRN",
+      "description": "LYSETS BØRN\nEn intens teaterthriller spillet af unge talenter fra Favrskov Dramaskole...",
+      "url": "https://billetto.dk/e/familie-fra-3-ar-vi-maler-med-frugter-baer-og-planter-pa-papir-billetter-1909011?utm_campaign=websites&utm_content=DK+7129978&utm_medium=publishers&utm_source=billetto+advertising",
+      "branded_url": "https://billetto.dk/e/familie-fra-3-ar-vi-maler-med-frugter-baer-og-planter-pa-papir-billetter-1909011?utm_campaign=websites&utm_content=DK+7129978&utm_medium=publishers&utm_source=billetto+advertising",
+      "image_link": "https://billetto.imgix.net/92ejo34wj52vv6bljr5tqxr8o1xr?w=1200&h=675&fit=crop&auto=compress%2Cformat&rect=44%2C0%2C1628%2C916&s=2343a999b24b43b563049f6f99c336ef",
+      "availability": true,
+      "organiser": {
+        "id": 6662884,
+        "name": "Favrskov Dramaskole"
+      },
+      "minimum_price": {
+        "amount_in_cents": 50,
+        "currency": "DKK"
+      },
+      "categorization": {
+        "category": "performing_arts",
+        "subcategory": "theatre",
+        "type": "concert"
+      },
+      "location": {
+        "location_name": "Hinnerup Bibliotek",
+        "address_line": "Skovvej 18",
+        "city": "Hinnerup",
+        "postal_code": "8382",
+        "country": "Danmark",
+        "region": "Midtjylland",
+        "coordinates": {
+          "latitude": 56.2637,
+          "longitude": 10.0594
+        }
+      },
+      "startdate": "2026-06-03T17:00:00Z",
+      "enddate": "2026-06-05T18:00:00Z",
+      "organization": {
+        "id": 1,
+        "domain": "billetto.dk"
+      },
+      "headliners": []
+    },
+
+    {
+      "id": "1909064",
+      "object": "public_event",
+      "kind": "regular",
+      "state": "published",
+      "title": "Comedy på Ricthers",
+      "description": "Standup comedy show in Køge...",
+      "url": "https://billetto.dk/e/mosaik-kursus-weekend-billetter-1909039?utm_campaign=websites&utm_content=DK+7129978&utm_medium=publishers&utm_source=billetto+advertising",
+      "branded_url": "https://billetto.dk/e/mosaik-kursus-weekend-billetter-1909039?utm_campaign=websites&utm_content=DK+7129978&utm_medium=publishers&utm_source=billetto+advertising",
+      "image_link": "https://billetto.imgix.net/rb5jrp74yat063khz9p1nu3nam7o?w=1200&h=675&fit=crop&auto=compress%2Cformat&rect=0%2C491%2C1440%2C810&s=95b9836c3bccbd69ce61452d1f8645ad",
+      "availability": true,
+      "organiser": {
+        "id": 128700,
+        "name": "Olav Lundsgaard"
+      },
+      "minimum_price": {
+        "amount_in_cents": 130,
+        "currency": "DKK"
+      },
+      "categorization": {
+        "category": "community",
+        "subcategory": "other",
+        "type": "concert"
+      },
+      "location": {
+        "location_name": "RICHTERs Ølstue",
+        "address_line": "Vestergade 16",
+        "city": "Køge",
+        "postal_code": "4600",
+        "country": "Danmark",
+        "region": "Sjælland",
+        "coordinates": {
+          "latitude": 55.4572,
+          "longitude": 12.1789
+        }
+      },
+      "startdate": "2026-05-22T18:00:00Z",
+      "enddate": "2026-05-22T20:00:00Z",
+      "organization": {
+        "id": 1,
+        "domain": "billetto.dk"
+      },
+      "headliners": []
+    },
+
+    {
+      "id": "1909039",
+      "object": "public_event",
+      "kind": "regular",
+      "state": "published",
+      "title": "Mosaik Kursus (weekend)",
+      "description": "Workshop for beginners...",
+      "url": "https://billetto.dk/e/familie-fra-3-ar-vi-maler-med-frugter-baer-og-planter-pa-papir-billetter-1909011?utm_campaign=websites&utm_content=DK+7129978&utm_medium=publishers&utm_source=billetto+advertising",
+      "branded_url": "https://billetto.dk/e/familie-fra-3-ar-vi-maler-med-frugter-baer-og-planter-pa-papir-billetter-1909011?utm_campaign=websites&utm_content=DK+7129978&utm_medium=publishers&utm_source=billetto+advertising",
+      "image_link": "https://billetto.imgix.net/8w5wg7pyy89a6blhw3m0ksjn9v06?w=1200&h=675&fit=crop&auto=compress%2Cformat&rect=0%2C331%2C1920%2C1080&s=fdd95d84ce374fe1aba25929eaa84a40",
+      "availability": true,
+      "organiser": {
+        "id": 1724566,
+        "name": "Glad Sol"
+      },
+      "minimum_price": {
+        "amount_in_cents": 1500,
+        "currency": "DKK"
+      },
+      "categorization": {
+        "category": "hobbies",
+        "subcategory": "diy",
+        "type": "class_training"
+      },
+      "location": {
+        "location_name": "Glad Sol",
+        "address_line": "Holmbladsgade 23",
+        "city": "København",
+        "postal_code": "2300",
+        "country": "Danmark",
+        "region": "Hovedstaden",
+        "coordinates": {
+          "latitude": 55.665,
+          "longitude": 12.6053
+        }
+      },
+      "startdate": "2026-10-23T15:00:00Z",
+      "enddate": "2026-10-25T13:00:00Z",
+      "organization": {
+        "id": 1,
+        "domain": "billetto.dk"
+      },
+      "headliners": []
+    },
+
+    {
+      "id": "1909011",
+      "object": "public_event",
+      "kind": "regular",
+      "state": "published",
+      "title": "Familie fra 3 år - Vi maler med frugter",
+      "description": "Painting workshop for kids...",
+      "url": "https://billetto.dk/e/lysets-born-billetter-1909319?utm_campaign=websites&utm_content=DK+7129978&utm_medium=publishers&utm_source=billetto+advertising",
+      "branded_url": "https://billetto.dk/e/lysets-born-billetter-1909319?utm_campaign=websites&utm_content=DK+7129978&utm_medium=publishers&utm_source=billetto+advertising",
+      "image_link": "https://billetto.imgix.net/c5yl66ujf54ngbyeel5i5mqtypi3?w=1200&h=675&fit=crop&auto=compress%2Cformat&rect=0%2C130%2C940%2C529&s=e274317a7796e6ad96fdf481760a9e2c",
+      "availability": true,
+      "organiser": {
+        "id": 1175065,
+        "name": "Atelieret i Ørding"
+      },
+      "minimum_price": {
+        "amount_in_cents": 150,
+        "currency": "DKK"
+      },
+      "categorization": {
+        "category": "hobbies",
+        "subcategory": "drawing_painting",
+        "type": "class_training"
+      },
+      "location": {
+        "location_name": "Atelieret i Ørding",
+        "address_line": "Kongehøjvej 55",
+        "city": "Øster Assels",
+        "postal_code": "7990",
+        "country": "Danmark",
+        "region": "Nordjylland",
+        "coordinates": {
+          "latitude": 56.7176,
+          "longitude": 8.758
+        }
+      },
+      "startdate": null,
+      "enddate": null,
+      "organization": {
+        "id": 1,
+        "domain": "billetto.dk"
+      },
+      "headliners": []
+    }
+  ]
+}

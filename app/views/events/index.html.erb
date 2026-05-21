@@ -1,0 +1,105 @@
+<h1>Events</h1>
+
+<style>
+  .event-card {
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    max-width: 500px;
+  }
+
+  .event-card img {
+    border-radius: 8px;
+  }
+
+  .btn {
+    padding: 6px 12px;
+    border: none;
+    cursor: pointer;
+    margin: 5px;
+  }
+
+  .btn-success {
+    background: #28a745;
+    color: white;
+  }
+
+  .btn-danger {
+    background: #dc3545;
+    color: white;
+  }
+</style>
+
+ <% @events.each do |event| %>
+  <div class="event-card">
+
+    <!-- IMAGE -->
+    <% if event.image_url.present? %>
+
+      <img
+        src="<%= event.image_url %>"
+        onerror="this.onerror=null;this.src='https://via.placeholder.com/300?text=No+Image';"
+        style="width:100%;height:200px;object-fit:cover;"
+      >
+
+    <% else %>
+
+      <div style="width:100%; height:200px; background:#eee; display:flex; align-items:center; justify-content:center;">
+        No Image Available
+      </div>
+
+  <% end %>
+
+    <!-- TITLE -->
+    <h2><%= event.title %></h2>
+
+    <!-- DESCRIPTION -->
+    <p><%= truncate(event.description, length: 120) %></p>
+
+    <!-- DATE -->
+    <p>🗓 <%= event.date.present? ? event.date : "Not Available" %></p>
+
+    <!-- PRICE -->
+    <p>💰 Price: <%= event.price_cents.present? ? "#{event.price_cents / 100.0} #{event.currency}" : "Free / N/A" %></p>
+
+    <!-- LOCATION -->
+    <p>📍 <%= [event.location_name, event.city, event.country].compact.join(", ") %></p>
+
+    <!-- VOTING -->
+    <div style="margin-top:10px;">
+
+      <span>👍 <%= event.upvotes.to_i %></span>
+      <button onclick="upvote(<%= event.id %>)" class="btn btn-success">
+        Upvote
+      </button>
+
+      <span>👎 <%= event.downvotes.to_i %></span>
+      <button onclick="downvote(<%= event.id %>)" class="btn btn-danger">
+        Downvote
+      </button>
+
+    </div>
+
+  </div>
+<% end %>
+
+<script>
+  function upvote(id) {
+    fetch(`/events/${id}/upvote`, {
+      method: "POST",
+      headers: {
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
+      }
+    }).then(() => location.reload());
+  }
+
+  function downvote(id) {
+    fetch(`/events/${id}/downvote`, {
+      method: "POST",
+      headers: {
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content
+      }
+    }).then(() => location.reload());
+  }
+</script>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>BillettoApp</title>
+
+    <%= stylesheet_link_tag "application.css" %>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+    <!-- CLERK -->
+    <script
+      crossorigin="anonymous"
+      data-clerk-publishable-key="<%= ENV['CLERK_PUBLISHABLE_KEY'] %>"
+      src="https://cdn.jsdelivr.net/npm/@clerk/clerk-js@latest/dist/clerk.browser.js">
+    </script>
+
+    <!-- BUTTON STYLING -->
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f5f7fb;
+        margin: 0;
+        padding: 30px;
+      }
+
+      h1 {
+        color: #222;
+        margin-bottom: 25px;
+      }
+
+      .auth-buttons {
+        display: flex;
+        gap: 12px;
+        margin-bottom: 30px;
+      }
+
+      .auth-btn {
+        border: none;
+        padding: 12px 24px;
+        border-radius: 10px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s ease;
+        color: white;
+      }
+
+      .signup-btn {
+        background: #4f46e5;
+      }
+
+      .signup-btn:hover {
+        background: #4338ca;
+        transform: translateY(-2px);
+      }
+
+      .login-btn {
+        background: #059669;
+      }
+
+      .login-btn:hover {
+        background: #047857;
+        transform: translateY(-2px);
+      }
+
+      .logout-btn {
+        background: #dc2626;
+      }
+
+      .logout-btn:hover {
+        background: #b91c1c;
+        transform: translateY(-2px);
+      }
+    </style>
+
+  </head>
+
+  <body>
+
+    <div style="
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      padding: 25px 30px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      color: white;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    ">
+
+      <!-- LEFT SIDE -->
+      <div>
+        <h1 style="
+          margin: 0;
+          font-size: 42px;
+          font-weight: bold;
+          letter-spacing: 1px;
+        ">
+          🎟️ Billetto App
+        </h1>
+
+        <p style="
+          margin-top: 10px;
+          font-size: 18px;
+          opacity: 0.9;
+        ">
+          Discover amazing events, workshops, comedy shows & experiences
+        </p>
+      </div>
+
+      <!-- RIGHT SIDE BUTTONS -->
+      <div class="auth-buttons" style="
+        display:flex;
+        gap:10px;
+      ">
+
+        <button id="signup-btn"
+                class="auth-btn signup-btn"
+                style="
+                  padding:10px 18px;
+                  border:none;
+                  border-radius:8px;
+                  background:white;
+                  color:#667eea;
+                  font-weight:bold;
+                  cursor:pointer;
+                ">
+          Signup
+        </button>
+
+        <button id="login-btn"
+                class="auth-btn login-btn"
+                style="
+                  padding:10px 18px;
+                  border:none;
+                  border-radius:8px;
+                  background:#28a745;
+                  color:white;
+                  font-weight:bold;
+                  cursor:pointer;
+                ">
+          Login
+        </button>
+
+        <button id="logout-btn"
+                class="auth-btn logout-btn"
+                style="
+                  padding:10px 18px;
+                  border:none;
+                  border-radius:8px;
+                  background:#dc3545;
+                  color:white;
+                  font-weight:bold;
+                  cursor:pointer;
+                ">
+          Logout
+        </button>
+
+      </div>
+
+    </div>
+
+    <%= yield %>
+
+    <script>
+      let CLERK_TOKEN = null
+
+      // =========================
+      // BUTTON FUNCTIONS
+      // =========================
+
+      function showSignup() {
+        document.getElementById("signup-btn").style.display = "inline-block"
+        document.getElementById("login-btn").style.display = "none"
+        document.getElementById("logout-btn").style.display = "none"
+      }
+
+      function showLogin() {
+        document.getElementById("signup-btn").style.display = "none"
+        document.getElementById("login-btn").style.display = "inline-block"
+        document.getElementById("logout-btn").style.display = "none"
+      }
+
+      function showLogout() {
+        document.getElementById("signup-btn").style.display = "none"
+        document.getElementById("login-btn").style.display = "none"
+        document.getElementById("logout-btn").style.display = "inline-block"
+      }
+
+      // =========================
+      // INIT CLERK
+      // =========================
+
+      async function initializeClerk() {
+
+        while (!window.Clerk) {
+          await new Promise(resolve => setTimeout(resolve, 100))
+        }
+
+        await window.Clerk.load()
+
+        console.log("Clerk Loaded Successfully")
+
+        // =========================
+        // LOGIN
+        // =========================
+
+        document.getElementById("login-btn").onclick = async () => {
+
+          await window.Clerk.redirectToSignIn({
+            afterSignInUrl: "/events"
+          })
+        }
+
+        // =========================
+        // SIGNUP
+        // =========================
+
+        document.getElementById("signup-btn").onclick = async () => {
+
+          localStorage.setItem("signed_up", "true")
+
+          await window.Clerk.redirectToSignUp({
+            afterSignUpUrl: "/events"
+          })
+        }
+
+        // =========================
+        // LOGOUT
+        // =========================
+
+        document.getElementById("logout-btn").onclick = async () => {
+
+          if (window.Clerk.session) {
+            await window.Clerk.signOut()
+          }
+
+          CLERK_TOKEN = null
+
+          localStorage.removeItem("signed_up")
+
+          showSignup()
+
+          alert("Logged out successfully")
+
+          location.reload()
+        }
+
+        // =========================
+        // CHECK USER
+        // =========================
+
+        if (window.Clerk.user) {
+
+          console.log("USER:", window.Clerk.user)
+
+          CLERK_TOKEN = await window.Clerk.session.getToken()
+
+          console.log("JWT TOKEN:", CLERK_TOKEN)
+
+          showLogout()
+
+        } else {
+
+          console.log("No active user")
+
+          const signedUp = localStorage.getItem("signed_up")
+
+          if (signedUp) {
+            showLogin()
+          } else {
+            showSignup()
+          }
+        }
+      }
+
+      initializeClerk()
+
+      // =========================
+      // UPVOTE
+      // =========================
+
+      async function upvote(eventId) {
+
+        if (!CLERK_TOKEN) {
+          alert("Please login first")
+          return
+        }
+
+        const res = await fetch(`/events/${eventId}/upvote`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${CLERK_TOKEN}`
+          }
+        })
+
+        if (res.status === 401) {
+          alert("Unauthorized - login required")
+          return
+        }
+
+        location.reload()
+      }
+
+      // =========================
+      // DOWNVOTE
+      // =========================
+
+      async function downvote(eventId) {
+
+        if (!CLERK_TOKEN) {
+          alert("Please login first")
+          return
+        }
+
+        const res = await fetch(`/events/${eventId}/downvote`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${CLERK_TOKEN}`
+          }
+        })
+
+        if (res.status === 401) {
+          alert("Unauthorized - login required")
+          return
+        }
+
+        location.reload()
+      }
+    </script>
+
+  </body>
+</html>

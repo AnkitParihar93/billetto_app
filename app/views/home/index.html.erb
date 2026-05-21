@@ -1,0 +1,64 @@
+<h1>Billetto App</h1>
+
+<div id="app"></div>
+
+<script
+  async
+  crossorigin="anonymous"
+  data-clerk-publishable-key="<%= ENV['CLERK_PUBLISHABLE_KEY'] %>"
+  src="https://clerk.browser.app/latest/clerk.browser.js">
+</script>
+
+<script>
+window.addEventListener("load", async function () {
+
+  await Clerk.load()
+
+  const app = document.getElementById("app")
+
+  // =========================
+  // USER LOGGED IN
+  // =========================
+  if (Clerk.session) {
+
+    app.innerHTML = `
+      <h3>Logged In ✅</h3>
+      <button id="logout">Logout</button>
+    `
+
+    document.getElementById("logout").onclick = async () => {
+
+      await Clerk.signOut()
+
+      window.location.reload()
+    }
+
+  // =========================
+  // USER NOT LOGGED IN
+  // =========================
+  } else {
+
+    app.innerHTML = `
+      <button id="login">Login</button>
+      <button id="signup">Signup</button>
+    `
+
+    document.getElementById("login").onclick = async () => {
+
+      await Clerk.openSignIn({
+        afterSignInUrl: "/"
+      })
+
+    }
+
+    document.getElementById("signup").onclick = async () => {
+
+      await Clerk.openSignUp({
+        afterSignUpUrl: "/"
+      })
+
+    }
+  }
+
+})
+</script>
